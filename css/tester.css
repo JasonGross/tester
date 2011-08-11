@@ -1,0 +1,3 @@
+.prompt, .response {
+  display: table-cell;
+}
