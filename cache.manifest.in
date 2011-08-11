@@ -1,9 +1,10 @@
 CACHE MANIFEST
 # version
 tester.shtml
-https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js
-https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js
+//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js
+//ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js
 scripts/javascript/library.js
 scripts/javascript/tester.js
-https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css
+scripts/javascript/tester-ui.js
+//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css
 css/tester.css

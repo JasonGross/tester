@@ -1,4 +1,5 @@
-﻿function sample(population, k)
+﻿// from python
+function sample(population, k)
 {
   /* Chooses k unique random elements from a population sequence.
 
@@ -43,7 +44,7 @@
       pool[j] = pool[n-i-1];  // move non-selected item into vacancy
     }
   } else {
-    var selected = set();
+    var selected = {};
     selected_add = function (value) { selected[value] = true; }
     for (var i = 0; i < k; i++) {
       var j = Math.floor(Math.random() * n);
