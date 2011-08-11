@@ -3,3 +3,12 @@
 .prompt, .response {
   display: table-cell;
 }
+
+.previous-answer {
+  border-bottom: thin black solid;
+}
+
+#num-rounds-left {
+ font-weight: bold;
+ color: green;
+}
