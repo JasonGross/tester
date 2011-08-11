@@ -1,2 +1,7 @@
 #!/bin/bash
-git describe --match='tester-*' HEAD 2>/dev/null | sed s/tester-// >VERSION
+echo VERSION:
+./version.sh | tee VERSION
+echo
+echo cache.manifest:
+sed s"/^# version .*$/# version $(./version.sh)/i" -i cache.manifest
+cat cache.manifest
