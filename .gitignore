@@ -1,3 +1,6 @@
 *.pyc
 VERSION
+cache.manifest
 dev/
+storage/
+accounts/
