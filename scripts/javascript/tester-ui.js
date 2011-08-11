@@ -44,6 +44,7 @@ var TesterUI;
     tester.onTest = function onTest() {
       curTestNum++;
       testNum.html(curTestNum);
+      window.location.hash = '';
       window.location.hash = answerHash;
     };
 
