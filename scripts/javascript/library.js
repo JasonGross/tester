@@ -93,3 +93,45 @@ var urlParameters = {
   }
   //=============================================================
 };
+
+//===================================================================
+// From http://www.somacon.com/p143.php
+
+// return the value of the radio button that is checked
+// return an empty string if none are checked, or
+// there are no radio buttons
+function getCheckedValue(radioObj) {
+  if (!radioObj)
+    return "";
+  var radioLength = radioObj.length;
+  if (radioLength === undefined)
+    if (radioObj.checked)
+      return radioObj.value;
+    else
+      return "";
+  for (var i = 0; i < radioLength; i++) {
+    if (radioObj[i].checked) {
+      return radioObj[i].value;
+    }
+  }
+  return "";
+}
+
+// set the radio button with the given value as being checked
+// do nothing if there are no radio buttons
+// if the given value does not exist, all the radio buttons
+// are reset to unchecked
+function setCheckedValue(radioObj, newValue) {
+  if (!radioObj)
+    return;
+  var radioLength = radioObj.length;
+  newValue = '' + newValue;
+  if (radioLength === undefined) {
+    radioObj.checked = (newValue == radioObj.value);
+    return;
+  }
+  for (var i = 0; i < radioLength; i++) {
+    radioObj[i].checked = (newValue == radioObj[i].value);
+  }
+}
+//===================================================================

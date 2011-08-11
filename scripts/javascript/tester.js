@@ -9,6 +9,7 @@ var Tester;
     this.onCorrect = function correctEvent(ask, expected, given) {};
     this.onIncorrect = function incorrectEvent(ask, expected, given) {};
     this.onNewRound = function newRoundEvent(depth, count) {};
+    this.onFinish = function onFinish() {};
 
     function doTestingRound(tests, depth, callback) {
       var nextTests;
@@ -33,7 +34,10 @@ var Tester;
               doTestingRound(tests, depth, callback);
             });
           } else {
-            callback();
+            if (callback)
+              callback();
+            else
+              self.onFinish();
           }
         }
       }
