@@ -2,5 +2,8 @@
 <html manifest="cache.manifest">
   <head>
     <title>Vocabulary Tester</title>
+    <script type="text/javascript">
+      var version = '<!--#include virtual="VERSION" -->';
+    </script>
   </head>
 </html>
