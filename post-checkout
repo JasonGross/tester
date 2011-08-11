@@ -1,3 +1,0 @@
-#!/bin/sh
-BASE="`git rev-parse --show-toplevel`"
-"$BASE/update-version.sh"
