@@ -10,7 +10,7 @@ var Tester;
     this.onIncorrect = function incorrectEvent(ask, expected, given) {};
     this.onNewRound = function newRoundEvent(depth, count) {};
 
-    function doTestingRound(tests, depth) {
+    function doTestingRound(tests, depth, callback) {
       var nextTests;
       self.onNewRound(depth, tests.length);
       nextTests = [];
@@ -29,8 +29,11 @@ var Tester;
           });
         } else {
           if (nextTests.length > 0) {
-            doTestingRound(nextTests, depth + 1);
-            doTestingRound(tests, depth);
+            doTestingRound(nextTests, depth + 1, function () {
+              doTestingRound(tests, depth, callback);
+            });
+          } else {
+            callback();
           }
         }
       }
@@ -39,7 +42,7 @@ var Tester;
     }
 
     this.beginTesting = function beginTesting() {
-      doTestingRound(tests);
+      doTestingRound(tests, 0);
     };
 
     return this;

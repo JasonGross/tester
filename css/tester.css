@@ -1,3 +1,5 @@
+@import url("progress-bar.css");
+
 .prompt, .response {
   display: table-cell;
 }
