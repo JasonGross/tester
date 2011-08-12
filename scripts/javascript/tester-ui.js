@@ -3,14 +3,17 @@ var TesterUI;
   TesterUI = function TesterUI(askBox, answerBox, answerButton, afterPastAnswers, depthSpan, testNum, testCount, showTests, showTestsNumber,
                                progress, tests, isCorrect) {
     var self = this;
+    if (isCorrect === undefined) isCorrect = function equals(expected, given) { return expected == given; };
 
     var curTestNum;
 
     var previousResults = [];
 
-    var tester = new Tester(tests, isCorrect);
+    var tester = new Tester(tests, function passOnIsCorrect() { return self.isCorrect.apply(this, arguments); });
     var shouldBeginTesting = false;
     var answerHash = answerBox.substr(1);
+
+    this.isCorrect = isCorrect;
 
     this.beginTesting = function deferBeginTesting() {
       shouldBeginTesting = true;

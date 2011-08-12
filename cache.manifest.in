@@ -5,6 +5,7 @@ scripts/javascript/library.js
 scripts/javascript/tester.js
 scripts/javascript/tester-ui.js
 scripts/javascript/progress.js
+scripts/javascript/compare-answers.js
 css/tester.css
 css/progress-bar.css
 //ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js

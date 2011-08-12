@@ -4,6 +4,8 @@ var Tester;
     var self = this;
     if (isCorrect === undefined) isCorrect = function equals(expected, given) { return expected == given; };
 
+    this.isCorrect = isCorrect;
+
     this.ask = function emptyPrompt(ask, callback) { callback(undefined); }; 
 
     this.onCorrect = function correctEvent(ask, expected, given) {};
@@ -20,7 +22,7 @@ var Tester;
         if (testsLeft.length > 0) {
           var test = testsLeft.pop();
           self.ask(test[0], function gotResponse(given) {
-            if (isCorrect(test[1], given)) {
+            if (self.isCorrect(test[1], given)) {
               self.onCorrect(test[0], test[1], given);
             } else {
               self.onIncorrect(test[0], test[1], given);
