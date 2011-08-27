@@ -59,7 +59,7 @@
       </fieldset>
     </div>
     <div class="results">
-      <p>If you answer all the tests correctly in this round, you will have <span id="num-rounds-left">0</span> rounds left to do.</p>
+      <p>If you answer all the questions correctly in this round, you will have <span id="num-rounds-left">0</span> rounds left to do.</p>
     </div>
     <form>
       <div id="test-holder" style="display:table">
@@ -86,7 +86,7 @@
           </div>
         </div>
         <div class="progress-message" id="progress_message">
-          Out of the first <span id="progress-message-num-done">0</span> tests in this round: <br>
+          Out of the first <span id="progress-message-num-done">0</span> questions in this round: <br>
           Number Right: <span id="progress-message-num-correct">0</span> <br>
           Number Wrong: <span id="progress-message-num-incorrect">0</span>
         </div>
