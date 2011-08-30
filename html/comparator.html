@@ -1,0 +1,24 @@
+<script src="scripts/javascript/compare-answers.js" type="text/javascript"></script>
+<fieldset style="display: inline-block; vertical-align: top">
+  <legend>How do you want to compare your answer?</legend><br>
+  <label><input type="checkbox" id="ignore-case" checked="checked" class="compare-answer">ignore case</label><br>
+  <label><input type="checkbox" id="squish-spaces" checked="checked" class="compare-answer">squish spaces (treat <i>n</i> spaces the same way as 1)</label><br>
+  <label><input type="checkbox" id="strip-spaces" checked="checked" class="compare-answer">strip leading and trailing spaces</label><br>
+  <label><input type="checkbox" id="ignore-whitespace" class="compare-answer">ignore whitespace differences</label><br>
+  <label style="vertical-align:top"><input type="checkbox" id="custom-comparison-function" style="vertical-align:top">custom comparison function</label>
+  <textarea id="answer-regex" rows="10" cols="50"></textarea>
+</fieldset>
+<script type="text/javascript">
+  $('#custom-comparison-function')
+    .click(function () {
+      if ($('#custom-comparison-function').attr('checked') === 'checked')
+        $('#answer-regex').show();
+      else
+        $('#answer-regex').hide();
+    })
+    .click().click();
+
+  setupCompareAnswers(function (func) { tester.isCorrect = func; },
+                      '.compare-answer', '#answer-regex', '#ignore-case', '#squish-spaces', '#strip-spaces', '#ignore-whitespace');
+</script>
+
