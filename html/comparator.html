@@ -9,14 +9,14 @@
   <textarea id="answer-regex" rows="10" cols="50"></textarea>
 </fieldset>
 <script type="text/javascript">
+  $('#answer-regex').hide();
   $('#custom-comparison-function')
     .click(function () {
       if ($('#custom-comparison-function').attr('checked') === 'checked')
         $('#answer-regex').show();
       else
         $('#answer-regex').hide();
-    })
-    .click().click();
+    });
 
   setupCompareAnswers(function (func) { tester.isCorrect = func; },
                       '.compare-answer', '#answer-regex', '#ignore-case', '#squish-spaces', '#strip-spaces', '#ignore-whitespace');
