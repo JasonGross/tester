@@ -28,7 +28,7 @@
           tester = new TesterUI('#prompt', '#response', '#submit-response', '#test', '#num-rounds-left', '#test-num', '#test-count',
                                     '.show-tests', '#show-tests-number-input',
                                     progress, tests);
-          setTimeout(tester.beginTesting, 1); // let modifications to tester happen
+          setTimeout(function () { tester.beginTesting(); }, 1); // let modifications to tester happen
         }
       });
     </script>
