@@ -1,24 +1,25 @@
+/*global sample*/
 var Tester;
-(function () {
+(function (undefined) {
+  "use strict";
   Tester = function Tester(tests, isCorrect) {
     var self = this;
-    if (isCorrect === undefined) isCorrect = function equals(expected, given) { return expected == given; };
+    if (isCorrect === undefined) isCorrect = function equals(expected, given) { return expected === given; };
 
-    this.isCorrect = isCorrect;
+    self.isCorrect = isCorrect;
 
-    this.ask = function emptyPrompt(ask, callback) { callback(undefined); }; 
+    self.ask = function emptyPrompt(ask, callback) { callback(undefined); }; 
 
-    this.onCorrect = function correctEvent(ask, expected, given) {};
-    this.onIncorrect = function incorrectEvent(ask, expected, given) {};
-    this.beforeNewRound = function beforeNewRoundEvent(nextDepth, callback) { callback(); };
-    this.onNewRound = function newRoundEvent(depth, count) {};
-    this.onFinish = function onFinishEvent() {};
+    self.onCorrect = function correctEvent(ask, expected, given) {};
+    self.onIncorrect = function incorrectEvent(ask, expected, given) {};
+    self.beforeNewRound = function beforeNewRoundEvent(nextDepth, callback) { callback(); };
+    self.onNewRound = function newRoundEvent(depth, count) {};
+    self.onFinish = function onFinishEvent() {};
 
     function doTestingRound(tests, depth, callback) {
       self.beforeNewRound(depth, function () {
-        var nextTests;
+        var nextTests = [];
         self.onNewRound(depth, tests.length);
-        nextTests = [];
 
         function doNextTest(testsLeft) {
           if (testsLeft.length > 0) {
@@ -38,10 +39,11 @@ var Tester;
                 doTestingRound(tests, depth, callback);
               });
             } else {
-              if (callback)
+              if (callback) {
                 callback();
-              else
+              } else {
                 self.onFinish();
+              }
             }
           }
         }
@@ -50,10 +52,10 @@ var Tester;
       });
     }
 
-    this.beginTesting = function beginTesting() {
+    self.beginTesting = function beginTesting() {
       doTestingRound(tests, 0);
     };
 
-    return this;
+    return self;
   };
-})();
+}());
