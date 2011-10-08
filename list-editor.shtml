@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html manifest="cache.manifest" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var version = '<!--#include virtual="VERSION" -->';
+    </script>
+    <script src="scripts/javascript/library.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+      $(function () {
+        var tests = urlParameters.getURLParameter('testList');
+        if (tests != '') {
+          tests = JSON.parse(decodeURIComponent(tests));
+          var prompts = '';
+          var responses = '';
+          var l = tests.length;
+          for (var i = 0; i < l; i++) {
+            prompts += tests[i][0] + "\n";
+            responses += tests[i][1] + "\n";
+          }
+          // set the textareas, chopping off the last \n
+          $('#prompts').attr('value', prompts.slice(0, prompts.length - 1));
+          $('#responses').attr('value', responses.slice(0, responses.length - 1));
+        }
+        $('#submit-button').click(function () {
+          var prompts = $('#prompts').attr('value').split(/\r\n|\r|\n/);
+          var responses = $('#responses').attr('value').split(/\r\n|\r|\n/);
+          var l = Math.max(prompts.length, responses.length);
+          tests = [];
+          for (var i = 0; i < l; i++) {
+            tests[i] = [prompts[i], responses[i]];
+          }
+          $('#testList').attr('value', JSON.stringify(tests));
+          return true;
+        });
+      });
+    </script>
+
+    <title>Vocabulary Tester v<!--#include virtual="VERSION" --></title>
+  </head>
+  <body>
+    <!--#include virtual="html/autoupdate.html" -->
+    <div class="only-when-cached">
+      <form action="tester.shtml" method="get">
+        <input type="hidden" name="testList" id="testList">
+        <input type="submit" value="Test Me!" id="submit-button">
+      </form>
+      <div style="display:table">
+        <div style="display:table-row">
+          <div style="display:table-cell">
+            List of prompts (one per line):
+          </div>
+          <div style="display:table-cell">
+            List of responses (one per line):
+          </div>
+        </div>
+        <div style="display:table-row">
+          <div style="display:table-cell">
+            <textarea rows="50" cols="35" id="responses"></textarea>
+          </div>
+          <div style="display:table-cell">
+            <textarea rows="50" cols="35" id="prompts"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

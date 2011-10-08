@@ -14,7 +14,6 @@
 
     <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
     <link href="css/tester.css" rel="stylesheet" type="text/css">
-    <link href="css/update.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript">
       var progress;
@@ -25,11 +24,14 @@
           alert("You did not specify any tests, you are being redirected to a nonsense set of tests.  You should specify the `testList' URL parameter.");
           document.location.search = '?testList=' + JSON.stringify([['foo', 'bar'], ['bar', 'baz'], ['baz', 'qux']]);
         } else {
-          tests = JSON.parse(decodeURI(tests));
+          tests = JSON.parse(decodeURIComponent(tests));
           tester = new TesterUI('#prompt', '#response', '#submit-response', '#test', '#num-rounds-left', '#test-num', '#test-count',
                                 '.show-tests', '#show-tests-number-input', '.prompt',
                                 progress, tests);
           setTimeout(function () { tester.beginTesting(); }, 1); // let modifications to tester happen
+
+          // allow editing of the word list
+          $('#testList').attr('value', JSON.stringify(tests));
         }
       });
     </script>
@@ -51,6 +53,12 @@
               onchange="document.getElementById('show-tests-custom').checked = 'checked';"/> of them.</label>
         </fieldset>
         <!--#include virtual="html/comparator.html" -->
+        <div>
+          <form action="list-editor.shtml" method="get">
+            <input type="hidden" name="testList" id="testList">
+            <input type="submit" value="Edit word list" id="edit-word-list-button">
+          </form>
+        </div>
       </div>
       <div class="results">
         <p>If you answer all the questions correctly in this round, you will have <span id="num-rounds-left">0</span> rounds left to do.</p>

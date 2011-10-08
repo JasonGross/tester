@@ -1,6 +1,7 @@
 CACHE MANIFEST
 # version
 tester.shtml
+list-editor.shtml
 scripts/javascript/library.js
 scripts/javascript/tester.js
 scripts/javascript/tester-ui.js
