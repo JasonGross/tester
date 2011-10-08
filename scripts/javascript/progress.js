@@ -63,12 +63,16 @@ var Progress;
       if (newNumRight !== undefined) numRight = newNumRight;
       if (newNumWrong !== undefined) numWrong = newNumWrong;
       if (newNumOther !== undefined) numOther = newNumOther;
-      correctProgressBar.width(Math.round(numRight * 100 / total) + '%');
-      incorrectProgressBar.width(Math.round(numWrong * 100 / total) + '%');
-      actualProgressBar.progressbar('option', 'value', (numRight + numWrong + numOther) * 100.0 / total);
+      var numDone = numRight + numWrong + numOther;
+      // jQuery's progress bar is silly and rounds things.
+      // So we need to round the total (but not the individual parts).
+      var percentPerAnswer = (numDone != 0) ? (Math.round(numDone * 100 / total) / numDone) : 0;
+      correctProgressBar.width((numRight * percentPerAnswer) + '%');
+      incorrectProgressBar.width((numWrong * percentPerAnswer) + '%');
+      actualProgressBar.progressbar('option', 'value', numDone * 100 / total);
       correctText.html(numRight);
       incorrectText.html(numWrong);
-      scoredText.html(numRight + numWrong + numOther);
+      scoredText.html(numDone);
     };
 
     this.showProgress = function showProgress() { progress.show(); };
