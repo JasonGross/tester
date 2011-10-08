@@ -1,6 +1,7 @@
 var TesterUI;
 (function ($, jQuery) {
   TesterUI = function TesterUI(askBox, answerBox, answerButton, afterPastAnswers, depthSpan, testNum, testCount, showTests, showTestsNumber,
+                               promptHolderBox,
                                progress, tests, isCorrect) {
     var self = this;
     if (isCorrect === undefined) isCorrect = function equals(expected, given) { return expected == given; };
@@ -21,17 +22,20 @@ var TesterUI;
 
     var doNextTask;
 
+    var onSubmit;
+
     $(function () {
       askBox = $(askBox);
       answerBox = $(answerBox);
       answerButton = $(answerButton)
-        .click(function () { doNextTask(answerBox.attr('value')); return false; });
+        .click(function () { onSubmit(); return false; });
       afterPastAnswers = $(afterPastAnswers);
       depthSpan = $(depthSpan);
       testNum = $(testNum);
       testCount = $(testCount);
       showTests = $(showTests);
       showTestsNumber = $(showTestsNumber);
+      promptHolderBox = $(promptHolderBox);
 
       self.beginTesting = tester.beginTesting;
       if (shouldBeginTesting)
@@ -51,7 +55,22 @@ var TesterUI;
       window.location.hash = answerHash;
     };
 
+    tester.beforeNewRound = function beforeNewRound(depth, callback) {
+      if (depth == 0) {
+        callback();
+        return;
+      }
+
+      answerButton.html('Next Round');
+      onSubmit = function onSubmitDoNextRound() { callback(); };
+      hidePrompt();
+    };
+
     tester.onNewRound = function onNewRound(depth, count) {
+      answerButton.html('Next Question');
+      onSubmit = function onSubmitDoNextTask() { doNextTask(answerBox.attr('value')); };
+
+      showPrompt();
       if (getCheckedValue(showTests) != 'all')
         while (previousResults.length > 0)
           previousResults.shift().remove();
@@ -115,9 +134,20 @@ var TesterUI;
     };
 
     tester.onFinish = function onFinish() {
-      alert("Congratulations!  You've gotten all the tests correct, in a row.");
+      hidePrompt();
       answerButton.attr('disabled', 'disabled');
+      alert("Congratulations!  You've gotten all the tests correct, in a row.");
     };
+
+    function hidePrompt() {
+      promptHolderBox.css({'color': 'white'});
+      answerBox.hide()
+    }
+
+    function showPrompt() {
+      promptHolderBox.css({'color': 'black'});
+      answerBox.show()
+    }
 
     return this;
   };

@@ -26,8 +26,8 @@
         } else {
           tests = JSON.parse(decodeURI(tests));
           tester = new TesterUI('#prompt', '#response', '#submit-response', '#test', '#num-rounds-left', '#test-num', '#test-count',
-                                    '.show-tests', '#show-tests-number-input',
-                                    progress, tests);
+                                '.show-tests', '#show-tests-number-input', '.prompt',
+                                progress, tests);
           setTimeout(function () { tester.beginTesting(); }, 1); // let modifications to tester happen
         }
       });
