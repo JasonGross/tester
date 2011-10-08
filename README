@@ -1,0 +1,6 @@
+The Vocabular Tester is meant to test your ability to recall,
+verbatim, specific answers to specific prompts.  The tests work
+recursively; if you get all the prompts correct in any round, then you
+are done with that round.  Otherwise, a new round is started which
+tests you on the prompts that you got wrong in the current round, and
+when that round is done, you have to do the current round again.
