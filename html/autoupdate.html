@@ -1,0 +1,69 @@
+<link href="css/update.css" rel="stylesheet" type="text/css">
+<div id="cache-checking" class="cache">
+  Please wait while we check for updates...
+</div>
+<div id="cache-downloading" class="cache">
+  Please wait while we download updates...
+</div>
+<div id="cache-error" class="cache">
+  There was an error in downloading updates.
+</div>
+<script type="text/javascript">
+  (function ($, jQuery, undefined) {
+    var cache = window.applicationCache;
+    if (cache === undefined) {
+      $('.cache').remove();
+      return;
+    }
+    $('.cache').hide();
+
+    var nonCacheElements;
+    $(function () {
+      nonCacheElements = $('.only-when-cached');
+    });
+
+    function registerCacheListener(name, cacheStatus, domElement, func) {
+      function doCacheEvent() {
+        $('.cache').hide();
+        if (domElement) $(domElement).show();
+        if (func) func.apply(this, arguments);
+        return true;
+      }
+
+      if (name) cache.addEventListener(name, doCacheEvent, false);
+      if (cacheStatus !== null && cacheStatus !== undefined &&
+          cache.status == cacheStatus)
+        doCacheEvent();
+    }
+
+    function hideNonCacheElements() {
+      $(function () { nonCacheElements.addClass('hidden-for-caching'); });
+    }
+    function showNonCacheElements() {
+      if (nonCacheElements !== undefined) 
+        nonCacheElements.removeClass('hidden-for-caching');
+    }
+
+    registerCacheListener('checking', cache.CHECKING, '#cache-checking', hideNonCacheElements);
+    registerCacheListener('downloading', cache.DOWNLOADING, '#cache-downloading', hideNonCacheElements);
+    registerCacheListener('noupdate', cache.IDLE, null, function () {
+      showNonCacheElements();
+      $('.cache').remove();
+    });
+    registerCacheListener('cached', null, null, function () {
+      showNonCacheElements();
+      $('.cache').remove();
+    });
+    registerCacheListener(null, cache.UPDATEREADY, null, function () {
+      cache.update();
+    });
+    registerCacheListener('updateready', null, null, function () {
+      cache.swapCache();
+      location.reload(true);
+    });
+    registerCacheListener('error', null, '#cache-error', function () {
+      hideNonCacheElements();
+    });
+  })(jQuery, jQuery);
+</script>
+

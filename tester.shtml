@@ -14,6 +14,7 @@
 
     <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
     <link href="css/tester.css" rel="stylesheet" type="text/css">
+    <link href="css/update.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript">
       var progress;
@@ -36,61 +37,64 @@
     <title>Vocabulary Tester v<!--#include virtual="VERSION" --></title>
   </head>
   <body>
-    <div id="options">
-      <fieldset style="display: inline-block; vertical-align: top">
-        <legend>Which past tests should be shown?</legend>
-        <label><input type="radio" name="show-tests" id="show-tests" class="show-tests" value="round" checked="checked">All the ones from this round.</label><br>
-        <label><input type="radio" name="show-tests" id="show-tests" class="show-tests" value="all">All of them.</label><br>
-        <label><input type="radio" name="show-tests" id="show-tests" class="show-tests" value="one">Only the most recent one.</label><br>
-        <label><input type="radio" name="show-tests" id="show-tests" class="show-tests" value="none">None of them.</label><br>
-        <label><input type="radio" name="show-tests" id="show-tests-custom" class="show-tests" value="custom">
-          <input type="number" min="0" step="1" value="5" id="show-tests-number-input"
-            onchange="document.getElementById('show-tests-custom').checked = 'checked';"/> of them.</label>
-      </fieldset>
-      <!--#include virtual="html/comparator.html" -->
-    </div>
-    <div class="results">
-      <p>If you answer all the questions correctly in this round, you will have <span id="num-rounds-left">0</span> rounds left to do.</p>
-    </div>
-    <form>
-      <div id="test-holder" style="display:table">
-        <label id="test" style="display:table-row">            
-          <span class="prompt">
-            <span id="test-num">1</span> of <span id="test-count">0</span>:&nbsp;
-            <span id="prompt"></span>&nbsp;&nbsp;&nbsp;
-          </span>
-          <span class="response"><input type="text" name="response" id="response" autofocus autocomplete="off" style="width:100%"/></span>
-        </label>
-      </div>  
-      <br>
-      <button type="submit" id="submit-response">Next Question</button>
-    </form>
-    <div class="results" id="results">
-      <div class="progress" id="progress">
-        <div class="progress-bar-holder">
-          <div class="actual-progress-bar-holder">
-            <div class="actual-progress-bar"></div>
-          </div>
-          <div class="overlay-progress-bar-holder ui-widget ui-progressbar ui-widget-content ui-corner-all">
-            <div class="correct-progress-bar ui-corner-left ui-progressbar"></div>
-            <div class="incorrect-progress-bar ui-progressbar"></div>
-          </div>
-        </div>
-        <div class="progress-message" id="progress_message">
-          Out of the first <span id="progress-message-num-done">0</span> questions in this round: <br>
-          Number Right: <span id="progress-message-num-correct">0</span> <br>
-          Number Wrong: <span id="progress-message-num-incorrect">0</span>
-        </div>
+    <!--#include virtual="html/autoupdate.html" -->
+    <div class="only-when-cached">
+      <div id="options">
+        <fieldset style="display: inline-block; vertical-align: top">
+          <legend>Which past tests should be shown?</legend>
+          <label><input type="radio" name="show-tests" id="show-tests" class="show-tests" value="round" checked="checked">All the ones from this round.</label><br>
+          <label><input type="radio" name="show-tests" id="show-tests" class="show-tests" value="all">All of them.</label><br>
+          <label><input type="radio" name="show-tests" id="show-tests" class="show-tests" value="one">Only the most recent one.</label><br>
+          <label><input type="radio" name="show-tests" id="show-tests" class="show-tests" value="none">None of them.</label><br>
+          <label><input type="radio" name="show-tests" id="show-tests-custom" class="show-tests" value="custom">
+            <input type="number" min="0" step="1" value="5" id="show-tests-number-input"
+              onchange="document.getElementById('show-tests-custom').checked = 'checked';"/> of them.</label>
+        </fieldset>
+        <!--#include virtual="html/comparator.html" -->
       </div>
-      <script type="text/javascript">
-        progress = new Progress(0,
-                                '.progress', '.progress-message', '.progress-bar-holder',
-                                '.actual-progress-bar', '.overlay-progress-bar-holder',
-                                '.correct-progress-bar', '.incorrect-progress-bar',
-                                '#progress-message-num-correct',
-                                '#progress-message-num-incorrect',
-                                '#progress-message-num-done');
-      </script>
+      <div class="results">
+        <p>If you answer all the questions correctly in this round, you will have <span id="num-rounds-left">0</span> rounds left to do.</p>
+      </div>
+      <form>
+        <div id="test-holder" style="display:table">
+          <label id="test" style="display:table-row">
+            <span class="prompt">
+              <span id="test-num">1</span> of <span id="test-count">0</span>:&nbsp;
+              <span id="prompt"></span>&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="response"><input type="text" name="response" id="response" autofocus autocomplete="off" style="width:100%"/></span>
+          </label>
+        </div>
+        <br>
+        <button type="submit" id="submit-response">Next Question</button>
+      </form>
+      <div class="results" id="results">
+        <div class="progress" id="progress">
+          <div class="progress-bar-holder">
+            <div class="actual-progress-bar-holder">
+              <div class="actual-progress-bar"></div>
+            </div>
+            <div class="overlay-progress-bar-holder ui-widget ui-progressbar ui-widget-content ui-corner-all">
+              <div class="correct-progress-bar ui-corner-left ui-progressbar"></div>
+              <div class="incorrect-progress-bar ui-progressbar"></div>
+            </div>
+          </div>
+          <div class="progress-message" id="progress_message">
+            Out of the first <span id="progress-message-num-done">0</span> questions in this round: <br>
+            Number Right: <span id="progress-message-num-correct">0</span> <br>
+            Number Wrong: <span id="progress-message-num-incorrect">0</span>
+          </div>
+        </div>
+        <script type="text/javascript">
+          progress = new Progress(0,
+                                  '.progress', '.progress-message', '.progress-bar-holder',
+                                  '.actual-progress-bar', '.overlay-progress-bar-holder',
+                                  '.correct-progress-bar', '.incorrect-progress-bar',
+                                  '#progress-message-num-correct',
+                                  '#progress-message-num-incorrect',
+                                  '#progress-message-num-done');
+        </script>
+      </div>
     </div>
   </body>
 </html>
