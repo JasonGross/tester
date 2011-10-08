@@ -1,3 +1,15 @@
+/*
+ * The Tester object is the core of this program.  It
+ * provides recursive testing rounds.
+ *
+ * new Tester(tests, [isCorrect = `==='])
+ *   tests     - a list of pairs [prompt, expected response]
+ *   isCorrect - function (given, expected)
+ *                 determines whether or not `given' is a valid response
+ *                 when `expected' is the expected response.
+ *
+ */
+
 /*global sample*/
 var Tester;
 (function (undefined) {
