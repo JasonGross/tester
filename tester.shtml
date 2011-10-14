@@ -8,6 +8,7 @@
       var version = '<!--#include virtual="VERSION" -->';
     </script>
     <script src="scripts/javascript/library.js" type="text/javascript"></script>
+    <script src="scripts/javascript/preferences.js" type="text/javascript"></script>
     <script src="scripts/javascript/tester.js" type="text/javascript"></script>
     <script src="scripts/javascript/tester-ui.js" type="text/javascript"></script>
     <script src="scripts/javascript/progress.js" type="text/javascript"></script>
@@ -51,6 +52,13 @@
           <label><input type="radio" name="show-tests" id="show-tests-custom" class="show-tests" value="custom">
             <input type="number" min="0" step="1" value="5" id="show-tests-number-input"
               onchange="document.getElementById('show-tests-custom').checked = 'checked';"/> of them.</label>
+          <script type="text/javascript">
+            (function () {
+              var showTestPreferences = new Preference("show-tests", "round", setCheckedValue, getCheckedValue, $('.show-tests'));
+              $('.show-tests').add('#show-tests-number-input')
+                .change(function () { showTestPreferences.store(); });
+            }();
+          </script>
         </fieldset>
         <!--#include virtual="html/comparator.html" -->
         <div>

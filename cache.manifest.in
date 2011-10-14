@@ -7,6 +7,7 @@ scripts/javascript/tester.js
 scripts/javascript/tester-ui.js
 scripts/javascript/progress.js
 scripts/javascript/compare-answers.js
+scripts/javascript/preferences.js
 css/tester.css
 css/progress-bar.css
 css/update.css
