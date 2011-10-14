@@ -58,10 +58,10 @@
         </div>
         <div style="display:table-row">
           <div style="display:table-cell">
-            <textarea rows="50" cols="35" id="responses"></textarea>
+            <textarea rows="50" cols="35" id="prompts"></textarea>
           </div>
           <div style="display:table-cell">
-            <textarea rows="50" cols="35" id="prompts"></textarea>
+            <textarea rows="50" cols="35" id="responses"></textarea>
           </div>
         </div>
       </div>
