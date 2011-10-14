@@ -12,7 +12,7 @@
       $(function () {
         var tests = urlParameters.getURLParameter('testList');
         if (tests != '') {
-          tests = JSON.parse(decodeURIComponent(tests));
+          tests = JSON.parse(decodeURIComponent(decodeURIComponent(tests)));
           var prompts = '';
           var responses = '';
           var l = tests.length;
@@ -32,7 +32,7 @@
           for (var i = 0; i < l; i++) {
             tests[i] = [prompts[i], responses[i]];
           }
-          $('#testList').attr('value', JSON.stringify(tests));
+          $('#testList').attr('value', encodeURIComponent(JSON.stringify(tests)));
           return true;
         });
       });

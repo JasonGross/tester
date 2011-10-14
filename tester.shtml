@@ -24,14 +24,14 @@
           alert("You did not specify any tests, you are being redirected to a nonsense set of tests.  You should specify the `testList' URL parameter.");
           document.location.search = '?testList=' + JSON.stringify([['foo', 'bar'], ['bar', 'baz'], ['baz', 'qux']]);
         } else {
-          tests = JSON.parse(decodeURIComponent(tests));
+          tests = JSON.parse(decodeURIComponent(decodeURIComponent(tests)));
           tester = new TesterUI('#prompt', '#response', '#submit-response', '#test', '#num-rounds-left', '#test-num', '#test-count',
                                 '.show-tests', '#show-tests-number-input', '.prompt',
                                 progress, tests);
           setTimeout(function () { tester.beginTesting(); }, 1); // let modifications to tester happen
 
           // allow editing of the word list
-          $('#testList').attr('value', JSON.stringify(tests));
+          $('#testList').attr('value', encodeURIComponent(JSON.stringify(tests)));
         }
       });
     </script>
