@@ -3,7 +3,8 @@
   Please wait while we check for updates...
 </div>
 <div id="cache-downloading" class="cache">
-  Please wait while we download updates...
+  <p>Please wait while we download updates... <span id="cache-downloading-progress"></span></p>
+  <div id="cache-downloading-progressbar"></div>
 </div>
 <div id="cache-error" class="cache">
   There was an error in downloading updates.
@@ -30,7 +31,7 @@
         return true;
       }
 
-      if (name) cache.addEventListener(name, doCacheEvent, false);
+      if (name) cache.addEventListener(name, doCacheEvent);
       if (cacheStatus !== null && cacheStatus !== undefined &&
           cache.status == cacheStatus)
         doCacheEvent();
@@ -44,9 +45,10 @@
         nonCacheElements.removeClass('hidden-for-caching');
     }
 
+
     registerCacheListener('checking', cache.CHECKING, '#cache-checking', hideNonCacheElements);
     registerCacheListener('downloading', cache.DOWNLOADING, '#cache-downloading', hideNonCacheElements);
-    registerCacheListener('noupdate', cache.IDLE, null, function () {
+    registerCacheListener('noupdate', null, null, function () {
       showNonCacheElements();
       $('.cache').remove();
     });
@@ -63,6 +65,12 @@
     });
     registerCacheListener('error', null, '#cache-error', function () {
       hideNonCacheElements();
+    });
+
+    $('#cache-downloading-progressbar').progressbar({ value: 0 });
+    cache.addEventListener('progress', function (ev) {
+      $('#cache-downloading-progressbar').progressbar({ value: 100 * ev.loaded / ev.total });
+      $('#cache-downloading-progress').html('(' + ev.loaded + ' of ' + ev.total + ')');
     });
   })(jQuery, jQuery);
 </script>
