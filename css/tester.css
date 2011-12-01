@@ -12,3 +12,7 @@
  font-weight: bold;
  color: green;
 }
+
+#edit-word-list-button {
+ font-size: 200%;
+}
