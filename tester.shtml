@@ -41,12 +41,6 @@
   <body>
     <!--#include virtual="html/autoupdate.html" -->
     <div class="only-when-cached">
-      <div>
-        <form action="list-editor.shtml" method="get">
-          <input type="hidden" name="testList" id="testList">
-          <input type="submit" value="Edit word list" id="edit-word-list-button">
-        </form>
-      </div>
       <div class="results">
         <p>If you answer all the questions correctly in this round, you will have <span id="num-rounds-left">0</span> rounds left to do.</p>
       </div>
@@ -89,6 +83,13 @@
                                   '#progress-message-num-incorrect',
                                   '#progress-message-num-done');
         </script>
+      </div>
+      <hr>
+      <div>
+        <form action="list-editor.shtml" method="get">
+          <input type="hidden" name="testList" id="testList">
+          <input type="submit" value="Edit word list" id="edit-word-list-button">
+        </form>
       </div>
       <hr>
       <div id="options">
