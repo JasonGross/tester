@@ -28,7 +28,11 @@ var TesterUI;
       askBox = $(askBox);
       answerBox = $(answerBox);
       answerButton = $(answerButton)
-        .click(function () { onSubmit(); return false; });
+        .click(function () {
+            onSubmit();
+            answerBox.focus();
+            return false;
+          });
       afterPastAnswers = $(afterPastAnswers);
       depthSpan = $(depthSpan);
       testNum = $(testNum);
