@@ -7,7 +7,7 @@
   <div id="cache-downloading-progressbar"></div>
 </div>
 <div id="cache-error" class="cache">
-  There was an error in downloading updates.
+  There was an error in downloading updates. Proceeding to the cached version...
 </div>
 <script type="text/javascript">
   (function ($, jQuery, undefined) {
@@ -46,6 +46,18 @@
     }
 
 
+    if (window.navigator.onLine) {
+      $('#cache-downloading-progressbar').progressbar({ value: 0 });
+      cache.addEventListener('progress', function (ev) {
+        $('#cache-downloading-progressbar').progressbar({ value: 100 * ev.loaded / ev.total });
+        $('#cache-downloading-progress').html('(' + ev.loaded + ' of ' + ev.total + ')');
+      });
+    } else {
+      showNonCacheElements();
+      $('.cache').remove();
+    }
+
+
     registerCacheListener('checking', cache.CHECKING, '#cache-checking', hideNonCacheElements);
     registerCacheListener('downloading', cache.DOWNLOADING, '#cache-downloading', hideNonCacheElements);
     registerCacheListener('noupdate', null, null, function () {
@@ -65,12 +77,10 @@
     });
     registerCacheListener('error', null, '#cache-error', function () {
       hideNonCacheElements();
-    });
-
-    $('#cache-downloading-progressbar').progressbar({ value: 0 });
-    cache.addEventListener('progress', function (ev) {
-      $('#cache-downloading-progressbar').progressbar({ value: 100 * ev.loaded / ev.total });
-      $('#cache-downloading-progress').html('(' + ev.loaded + ' of ' + ev.total + ')');
+      setTimeout(function () {
+        showNonCacheElements();
+        $('.cache').remove();
+      }, 1000);
     });
   })(jQuery, jQuery);
 </script>
