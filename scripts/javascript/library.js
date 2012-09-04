@@ -135,3 +135,37 @@ function setCheckedValue(radioObj, newValue) {
   }
 }
 //===================================================================
+
+//===================================================================
+// From http://jsperf.com/alternative-isfunction-implementations/4
+
+// check if something is a function
+var isFunction, isFunction_fast;
+(function () {
+  var getClass = {}.toString;
+  var hasProperty = {}.hasOwnProperty;
+
+  // Checks the internal [[Class]] name of the object.
+  isFunction = function isFunctionA(object) {
+    return !!(object && getClass.call(object) === '[object Function]');
+  }
+
+  // Partial duck-typing implementation by Garrett Smith.
+  var isFunctionB = function isFunctionB(object) {
+    if (typeof object !== 'function') return false;
+    var parent = object.constructor && object.constructor.prototype;
+    return !!(parent && hasProperty.call(parent, 'call'));
+  }
+                
+  // Pure duck-typing implementation taken from Underscore.js.
+  var isFunctionC = function isFunctionC(object) {
+    return !!(object && object.constructor && object.call && object.apply);
+  }
+
+  // Simple typeof comparison
+  isFunction_fast = function isFunctionD(object) {
+    return typeof object === 'function';
+  }
+})();
+//===================================================================
+
