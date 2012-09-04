@@ -1,5 +1,6 @@
 *.pyc
 VERSION
+GOOGLE-SITE-VERIFICATION
 cache.manifest
 dev/
 storage/

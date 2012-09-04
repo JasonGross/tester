@@ -9,3 +9,5 @@ echo cache.manifest:
 sed s"/^# version.*$/# version $("$BASE/version.sh")/i" "$BASE/cache.manifest.in" > "$BASE/cache.manifest"
 cat "$BASE/cache.manifest"
 chmod -w "$BASE/VERSION" "$BASE/cache.manifest"
+# create google analytics file if it doesn't exist
+touch GOOGLE-SITE-VERIFICATION
