@@ -1,4 +1,7 @@
-AddType text/cache-manifest .manifest
 ExpiresActive On
 ExpiresDefault "access"
-DirectoryIndex tester.shtml
+<Files *.exe>
+  SetHandler fcgid-script
+</Files>
+#AddType text/cache-manifest .manifest
+DirectoryIndex tester.exe/main

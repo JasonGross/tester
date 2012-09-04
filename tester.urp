@@ -1,0 +1,5 @@
+prefix /tester/dev/tester.exe
+rewrite all Tester/*
+
+version
+tester

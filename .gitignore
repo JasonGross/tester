@@ -1,4 +1,5 @@
 *.pyc
+*.exe
 VERSION
 GOOGLE-SITE-VERIFICATION
 cache.manifest
