@@ -1,0 +1,7 @@
+* Put both the list editor and the tester on the same page.
+* Permit user to upload images
+* Permit data uris
+* Display images in list of elements
+* Save progress automatically, in case the window is closed
+* Persistant user settings
+* Come up with a better story/UI for user settings.
