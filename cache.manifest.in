@@ -10,8 +10,8 @@ scripts/javascript/compare-answers.js
 css/tester.css
 css/progress-bar.css
 css/update.css
-//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js
-//ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js
+//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js
+//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js
 //ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css
 //ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/images/ui-bg_flat_75_ffffff_40x100.png
 //ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
