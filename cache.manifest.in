@@ -5,6 +5,7 @@ list-editor.shtml
 scripts/javascript/library.js
 scripts/javascript/tester.js
 scripts/javascript/tester-ui.js
+scripts/javascript/tester-ui-images.js
 scripts/javascript/progress.js
 scripts/javascript/compare-answers.js
 css/tester.css
@@ -30,3 +31,6 @@ css/update.css
 //ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/images/ui-icons_cd0a0a_256x240.png
 //ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png
 //ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png
+
+NETWORK:
+*

@@ -11,6 +11,7 @@
     <script src="scripts/javascript/library.js" type="text/javascript"></script>
     <script src="scripts/javascript/tester.js" type="text/javascript"></script>
     <script src="scripts/javascript/tester-ui.js" type="text/javascript"></script>
+    <script src="scripts/javascript/tester-ui-images.js" type="text/javascript"></script>
     <script src="scripts/javascript/progress.js" type="text/javascript"></script>
 
     <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
@@ -29,6 +30,7 @@
           tester = new TesterUI('#prompt', '#response', '#submit-response', '#test', '#num-rounds-left', '#test-num', '#test-count',
                                 '.show-tests', '#show-tests-number-input', '.prompt',
                                 progress, tests);
+          mixinTesterImages(tester);
           setTimeout(function () { tester.beginTesting(); }, 1); // let modifications to tester happen
 
           // allow editing of the word list

@@ -46,8 +46,11 @@ var TesterUI;
         self.beginTesting();
     });
 
+    this.makeAsk = function emptyAsk(ask) { return ask; };
+
     tester.ask = function ask(ask, callback) {
-      askBox.html(ask);
+      askBox.html("");
+      askBox.append(self.makeAsk(ask));
       answerBox.attr('value', '');
       doNextTask = callback;
     };
@@ -107,7 +110,7 @@ var TesterUI;
         .append($('<div>')
                   .css({'display':'table-cell'})
                   .addClass('previous-answer')
-                  .append(ask))
+                  .append(self.makeAsk(ask)))
         .append($('<div>')
                   .css({'display':'table-cell'})
                   .addClass('previous-answer')
