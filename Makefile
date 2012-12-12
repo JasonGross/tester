@@ -26,19 +26,27 @@ export LDFLAGS
 #CMD="$URWEB -noEmacs -protocol fastcgi -dbms sqlite -sql $PROJECT.sql -db \"dbname=$DIR/$PROJECT.db\" $PROJECT"
 
 
-all: $(PROJECT).exe scripts
+default: run-scripts
 
 scripts: $(PROJECT).exe
+	ssh scripts.mit.edu "cd $(shell pwd); make local"
+	/mit/scripts/bin/for-each-server pkill $(PROJECT).exe || true
 
-$(PROJECT).exe:
+
+local: $(PROJECT).exe
 	./update-version.sh -q
 	$(URWEB) -noEmacs -protocol fastcgi $(PROJECT)
-	/mit/scripts/bin/for-each-server pkill $(PROJECT).exe || true
+	pkill $(PROJECT).exe || true
+
+run-scripts: scripts
+	/mit/scripts/bin/for-each-server "$(shell readlink -f "$(PROJECT).exe")" || true
+
+run-local: local
+	./$(PROJECT).exe &
 
 #athrun scripts for-each-server pkill tester.exe
 
 clean:
 	$(RM) $(PROJECT).exe version.ur cache.manifest
 
-.phony: clean scripts all
-
+.phony: clean scripts local default run-scripts run-local
