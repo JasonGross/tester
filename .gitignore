@@ -1,6 +1,6 @@
 *.pyc
 *.exe
-VERSION
+version.ur
 GOOGLE-SITE-VERIFICATION
 cache.manifest
 dev/

@@ -25,16 +25,20 @@ export LDFLAGS
 #echo "LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\""
 #CMD="$URWEB -noEmacs -protocol fastcgi -dbms sqlite -sql $PROJECT.sql -db \"dbname=$DIR/$PROJECT.db\" $PROJECT"
 
+
+all: $(PROJECT).exe scripts
+
 scripts: $(PROJECT).exe
 
 $(PROJECT).exe:
+	./update-version.sh -q
 	$(URWEB) -noEmacs -protocol fastcgi $(PROJECT)
 	/mit/scripts/bin/for-each-server pkill $(PROJECT).exe || true
 
 #athrun scripts for-each-server pkill tester.exe
 
 clean:
-	rm $(PROJECT).exe
+	$(RM) $(PROJECT).exe version.ur cache.manifest
 
-.phony: clean scripts
+.phony: clean scripts all
 
