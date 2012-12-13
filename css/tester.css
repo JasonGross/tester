@@ -8,11 +8,11 @@
   border-bottom: thin black solid;
 }
 
-#num-rounds-left {
+.numRoundsLeft {
  font-weight: bold;
  color: green;
 }
 
-#edit-word-list-button {
+.edit-word-list-button {
  font-size: 200%;
 }
