@@ -35,7 +35,7 @@ scripts: $(PROJECT).exe
 
 local: $(PROJECT).exe
 	./update-version.sh -q
-	$(URWEB) -noEmacs -protocol fastcgi $(PROJECT)
+	$(URWEB) -noEmacs -dumpTypesOnError -unifyMore -protocol fastcgi $(PROJECT)
 	pkill $(PROJECT).exe || true
 
 run-scripts: scripts

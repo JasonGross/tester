@@ -1,18 +1,38 @@
 @import url("progress-bar.css");
 
 .prompt, .response {
-  display: table-cell;
+    display: table-cell;
 }
 
 .previous-answer {
-  border-bottom: thin black solid;
+    border-bottom: thin black solid;
 }
 
 .numRoundsLeft {
- font-weight: bold;
- color: green;
+    font-weight: bold;
+    color: green;
+}
+
+.testHolder {
+    display: table;
+}
+
+.correctRow, .incorrectRow {
+    display: table-row;
+}
+
+.correctRow {
+    color: green;
+}
+
+.incorrectRow {
+    color: red;
+}
+
+.cell {
+    display: table-cell;
 }
 
 .edit-word-list-button {
- font-size: 200%;
+    font-size: 200%;
 }
