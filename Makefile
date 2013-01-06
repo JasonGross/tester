@@ -18,6 +18,9 @@ $(shell echo $(SYSNAME_LIBS) > foo)
 LD_LIBRARY_PATH := /usr/lib64/mysql:$(SYSNAME_LIBS):$(LD_LIBRARY_PATH)
 LD_RUN_PATH := /usr/lib64/mysql:$(SYSNAME_LIBS):$(LD_RUN_PATH)
 LDFLAGS := -L/usr/lib64/mysql
+URWEBFLAGS := -protocol fastcgi -static #-noEmacs -dumpTypesOnError -unifyMore
+
+FILES := css/tester.css css/progress-bar.css tester.urp tester.ur tester.urs version.urs
 
 export LD_LIBRARY_PATH
 export LD_RUN_PATH
@@ -28,14 +31,14 @@ export LDFLAGS
 
 default: run-scripts
 
-scripts: $(PROJECT).exe
+scripts: $(PROJECT).exe $(FILES)
 	ssh scripts.mit.edu "cd $(shell pwd); make local"
 	/mit/scripts/bin/for-each-server pkill $(PROJECT).exe || true
 
 
-local: $(PROJECT).exe
+local: $(PROJECT).exe $(FILES)
 	./update-version.sh -q
-	$(URWEB) -noEmacs -dumpTypesOnError -unifyMore -protocol fastcgi $(PROJECT)
+	$(URWEB) $(URWEBFLAGS) $(PROJECT)
 	pkill $(PROJECT).exe || true
 
 run-scripts: scripts
