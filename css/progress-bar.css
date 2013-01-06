@@ -1,21 +1,21 @@
-.overlay-progress-bar-holder {
-  opacity: 0.5;
-  filter:alpha(opacity=50);
-  -moz-opacity: 0.5;
+.overlayProgressBarHolder {
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
 }
 
-.correct-progress-bar, .incorrect-progress-bar {
-  display: inline-block;
+.correctProgressBar, .incorrectProgressBar {
+    display: inline-block;
 }
 
-.correct-progress-bar {
-  background-color: green;
+.correctProgressBar {
+    background-color: green;
 }
 
-.incorrect-progress-bar {
-  background-color: red;
+.incorrectProgressBar {
+    background-color: red;
 }
 
-.actual-progress-bar-holder {
-  height: 0px;
+.actualProgressBarHolder {
+    height: 0px;
 }

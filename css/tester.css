@@ -19,6 +19,7 @@
 
 .correctRow, .incorrectRow {
     display: table-row;
+    border-bottom: thin black solid;
 }
 
 .correctRow {
