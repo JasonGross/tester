@@ -1,6 +1,9 @@
 allow url css/tester.css
+allow url //ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css
 prefix /tester/dev/tester.exe
 rewrite all Tester/*
+
+$/list
 
 version
 tester

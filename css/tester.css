@@ -19,6 +19,9 @@
 
 .correctRow, .incorrectRow {
     display: table-row;
+}
+
+.testerCell {
     border-bottom: thin black solid;
 }
 
