@@ -30,10 +30,14 @@ fun showToXml [a] (_ : show a) (value : source a) : signal xbody =
     v <- signal value;
     return <xml>{[v]}</xml>
 
-type answeredQuestion = {Prompt : string,
-			 ExpectedResponse : string,
-			 ActualResponse : string,
+type unansweredQuestion = {Prompt : string,
+			   ExpectedResponse : string}
+
+type answeredQuestion = unansweredQuestion ++
+			{ActualResponse : string,
 			 ResponseCorrect : bool}
+
+
 
 fun makeAnsweredQuestionRow (question : answeredQuestion) : xbody =
     (if question.ResponseCorrect then
@@ -76,6 +80,10 @@ fun makeAnsweredQuestionsProgressBar (questions : list answeredQuestion) (totalQ
 	  </div>
 	</xml>
     end
+
+fun makeRound (numberOfRoundsLeft : int)
+	      (answeredQuestions : list answeredQuestion)
+	      (unans
 
 
 fun main () =
