@@ -1,3 +1,6 @@
+0.4
+  * Add rudimentary support for presenting audio as prompts
+
 0.3
   * Add rudimentary support for displaying images as prompts
   * Add a progress bar while downloading updates
