@@ -13,3 +13,5 @@
   - runs 'git checkout master && git commit --allow-empty "Bump version for development"'
   - runs 'git tag -a tester-${n+1}dev -m "Tester development version ${n+1}"'
   - pushes all of this to github
+* When you get the last question right, don't display an extra instance of the last question.
+
