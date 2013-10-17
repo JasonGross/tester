@@ -6,3 +6,10 @@
 * Persistant user settings
 * Come up with a better story/UI for user settings.
 * Move to Ur/Web
+* Write a do-release.sh script which
+  - figures out the current dev version $n
+  - runs 'git checkout -b release-$n'
+  - runs 'git tag -a tester-$n -m "Tester release version $n"'
+  - runs 'git checkout master && git commit --allow-empty "Bump version for development"'
+  - runs 'git tag -a tester-${n+1}dev -m "Tester development version ${n+1}"'
+  - pushes all of this to github
