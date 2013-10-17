@@ -169,3 +169,26 @@ var isFunction, isFunction_fast;
 })();
 //===================================================================
 
+//===================================================================
+var makeIsURLByExtensions;
+(function ($, jQuery) {
+  makeIsURLByExtensions = function makeIsURLByExtensions(extensions) {
+    var useExtensions = [];
+    jQuery.each(extensions, function (index, ext) {
+      useExtensions.push(ext.toLowerCase());
+    });
+
+    return function isURLByExtensions(url) {
+      url = url.toLowerCase();
+      var len = url.length;
+      var rtn = false;
+      jQuery.each(useExtensions, function (index, ext) {
+        if (url.substr(len - ext.length - 1) === '.' + ext) {
+          rtn = true;
+        }
+      });
+      return rtn;
+    };
+  };
+})(jQuery, jQuery);
+//===================================================================

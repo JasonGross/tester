@@ -5,7 +5,9 @@ list-editor.shtml
 scripts/javascript/library.js
 scripts/javascript/tester.js
 scripts/javascript/tester-ui.js
+scripts/javascript/tester-ui-source-element.js
 scripts/javascript/tester-ui-images.js
+scripts/javascript/tester-ui-audio.js
 scripts/javascript/progress.js
 scripts/javascript/compare-answers.js
 css/tester.css
